@@ -28,9 +28,6 @@ struct block {
 	unsigned long long int tag;
 	unsigned char valid, dirty;
 	unsigned long long int filling_pc; // pc that filled this block
-    
-    
-    
 	int offset; // offset of *byte* that caused this line to be filled
 
 	block (void) {
