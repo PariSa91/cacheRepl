@@ -110,7 +110,7 @@ public:
 		cyclecount = t.cycle;
 		if (t.instr - icount >= 100000000) {
 			icount = t.instr;
-			printf ("icount = %lld, cycles = %lld\n", icount, cyclecount);
+		///	printf ("icount = %lld, cycles = %lld\n", icount, cyclecount);
 			fflush (stdout);
 		}
 		return & t;

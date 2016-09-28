@@ -27,8 +27,8 @@ using namespace std;
 #define LLC_CAPACITY	(4 * 1024 * 1024)
 #endif
 #define LLC_BLOCKSIZE	64
-#define LLC_ASSOC	16
-#define LLC_NSETS	(LLC_CAPACITY/(LLC_BLOCKSIZE*LLC_ASSOC))
+//#define LLC_ASSOC	16
+//#define LLC_NSETS	(LLC_CAPACITY/(LLC_BLOCKSIZE*LLC_ASSOC))
 
 #define MAX_CORES	16
 #define MAX_THREADS	256
@@ -93,6 +93,12 @@ int main (int argc, char *argv[]) {
 	for (i=0; i<nthreads; i++) {
 		readers[i] = new tracereader (argv[i+1]);
 	}
+
+	int LLC_ASSOC = 16;
+
+	GET_PARAM("DAN_ASSOC", LLC_ASSOC);
+	int LLC_NSETS= (LLC_CAPACITY/(LLC_BLOCKSIZE*LLC_ASSOC));
+	cout<< "#sets: "<< LLC_NSETS <<endl;
 	GET_PARAM ("DAN_POLICY", dan_policy);
 	GET_LL_PARAM ("DAN_MAX_INST", dan_max_inst);
 	GET_LL_PARAM ("DAN_MAX_CYCLE", dan_max_cycle);
@@ -205,7 +211,7 @@ int main (int argc, char *argv[]) {
 				cycles[min_cycle_thread] = traces[min_cycle_thread]->cycle;
 		}
 		if (iterations && iterations % 100000000 == 0) {
-			printf ("core 0 icount = %lld\n", readers[0]->get_icount());
+		//	printf ("core 0 icount = %lld\n", readers[0]->get_icount());
 			print_stats ();
 		}
 		iterations++;
