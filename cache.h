@@ -1,7 +1,7 @@
 // quick and dirty cache simulation
 
 #define MAX_SETS	(1<<19)
-#define MAX_ASSOC	16
+#define MAX_ASSOC	1024
 #define WORDSIZE	4
 
 #define DAN_IREAD       0

@@ -24,14 +24,15 @@ using namespace std;
 // L3 shared cache: 4MB
 
 #ifndef LLC_CAPACITY
-#define LLC_CAPACITY	(4 * 1024 * 1024)
+#define LLC_CAPACITY	(4 * 1024 * 1024) // 4M
 #endif
 #define LLC_BLOCKSIZE	64
 //#define LLC_ASSOC	16
 //#define LLC_NSETS	(LLC_CAPACITY/(LLC_BLOCKSIZE*LLC_ASSOC))
 
-#define MAX_CORES	16
+#define MAX_CORES	160
 #define MAX_THREADS	256
+
 
 cache LLC;
 FILE *mintracefp = NULL;
@@ -97,7 +98,7 @@ int main (int argc, char *argv[]) {
 	int LLC_ASSOC = 16;
 
 	GET_PARAM("DAN_ASSOC", LLC_ASSOC);
-	int LLC_NSETS= (LLC_CAPACITY/(LLC_BLOCKSIZE*LLC_ASSOC));
+	int LLC_NSETS=    (LLC_CAPACITY/(LLC_BLOCKSIZE*LLC_ASSOC)); // 1 ; // for fully assoc ///
 	cout<< "#sets: "<< LLC_NSETS <<endl;
 	GET_PARAM ("DAN_POLICY", dan_policy);
 	GET_LL_PARAM ("DAN_MAX_INST", dan_max_inst);
